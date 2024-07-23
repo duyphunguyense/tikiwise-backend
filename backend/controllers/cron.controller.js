@@ -1,11 +1,6 @@
 import { cronService } from "../services/cron.service.js";
 import {
-    saveOrUpdateProduct,
-    scrapeTikiProduct,
-    getAllProductsService,
-    getProductByIdService,
-    getSimilarProductsService,
-    addUserEmailToProductService
+    getAllProductsService
 } from "../services/product.service.js";
 
 export const cron = async (req, res) => {
