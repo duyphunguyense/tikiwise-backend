@@ -5,6 +5,7 @@ import express from "express";
 
 import { connectToDB } from "./db/mongoose.js";
 import productRoute from "./routes/product.route.js";
+import cronRoute from "./routes/cron.route.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());//to parse the incoming requests with JSON payload (from
 app.use(cookieParser());
 
 app.use('/api/product', productRoute);
+app.use('/api/cron', cronRoute);
 
 app.listen(PORT, () => {
     connectToDB();

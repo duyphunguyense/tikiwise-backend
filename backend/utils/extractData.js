@@ -1,5 +1,14 @@
 import { scrollPageUntilElement } from "../puppeteer/pageAction.js";
 
+const Notification = {
+    WELCOME: 'WELCOME',
+    CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
+    LOWEST_PRICE: 'LOWEST_PRICE',
+    THRESHOLD_MET: 'THRESHOLD_MET',
+};
+
+const THRESHOLD_PERCENTAGE = 40;
+
 // Extract data in browsers using puppeteer evaluation
 export const extractProductDataInBrowser = async (page) => {
     return await page.evaluate(() => {
@@ -127,3 +136,19 @@ export function getAveragePrice(priceList) {
 
     return averagePrice;
 }
+
+export const getEmailNotifType = (
+    scrapedProduct,
+    currentProduct
+) => {
+    const lowestPrice = getLowestPrice(currentProduct.priceHistory);
+
+    if (scrapedProduct.currentPrice < lowestPrice) {
+        return Notification.LOWEST_PRICE;
+    }
+    if (scrapedProduct.discountRate >= THRESHOLD_PERCENTAGE) {
+        return Notification.THRESHOLD_MET;
+    }
+
+    return null;
+};
