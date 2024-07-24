@@ -1,6 +1,6 @@
-import { scrapeTikiProduct } from "./product.service";
+import { scrapeTikiProduct } from "./product.service.js";
 import * as productRepository from "../db/product.repository.js";
-import { getEmailNotifType } from "../utils/extractData";
+import { getEmailNotifType } from "../utils/extractData.js";
 import { generateEmailBody } from "../utils/nodemailer/index.js";
 
 export const cronService = async (products) => {
