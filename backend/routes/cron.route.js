@@ -1,5 +1,5 @@
 import express from 'express';
-import { cron } from '../controllers/cron.controller';
+import { cron } from '../controllers/cron.controller.js';
 
 const router = express.Router();
 
